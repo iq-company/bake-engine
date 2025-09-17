@@ -1,0 +1,44 @@
+registry: ${env("REGISTRY","")}
+owner: ${env("OWNER", env("GITHUB_REPOSITORY_OWNER",""))}
+platforms:
+  - linux/amd64
+push: false
+check: auto
+hash:
+  tag_length: 8
+targets:
+  src:
+    dockerfile: docker/src/Dockerfile
+    context: .
+    deps: []
+    hash_mode: self
+    image: src
+    latest: true
+  # service with sqlite config
+  sqlite:
+    dockerfile: docker/sqlite/Dockerfile
+    context: .
+    deps:
+      - src
+    hash_mode: self
+    image: sqlite
+    latest: true
+  # build the UI isloated
+  ui:
+    dockerfile: docker/ui/Dockerfile
+    context: .
+    deps:
+      - src
+    hash_mode: self+deps
+    image: ui
+    latest: true
+  # target image with sqlite config and ui included
+  sqlite-and-ui:
+    dockerfile: docker/sqlite-and-ui/Dockerfile
+    context: .
+    deps:
+      - sqlite
+      - ui
+    hash_mode: self
+    image: sqlite-and-ui
+    latest: true
