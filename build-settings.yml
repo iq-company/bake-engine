@@ -8,16 +8,16 @@ hash:
   tag_length: 8
 targets:
   src:
-    dockerfile: docker/src/Dockerfile
-    context: .
+    dockerfile: Dockerfile
+    context: docker/src
     deps: []
     hash_mode: self
     image: src
     latest: true
   # service with sqlite config
   conductor:
-    dockerfile: docker/conductor/Dockerfile
-    context: .
+    dockerfile: Dockerfile
+    context: docker/conductor
     deps:
       - src
     hash_mode: self
@@ -25,8 +25,8 @@ targets:
     latest: true
   # build the UI isloated
   ui:
-    dockerfile: docker/ui/Dockerfile
-    context: .
+    dockerfile: Dockerfile
+    context: docker/ui
     deps:
       - src
     hash_mode: self+deps
@@ -34,8 +34,8 @@ targets:
     latest: true
   # target image with sqlite config and ui included
   sqlite-and-ui:
-    dockerfile: docker/sqlite-and-ui/Dockerfile
-    context: .
+    dockerfile: Dockerfile
+    context: docker/sqlite-and-ui
     deps:
       - conductor
       - ui

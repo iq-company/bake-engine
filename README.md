@@ -30,3 +30,11 @@ baker build --push
 baker ci gh
 ```
 
+## Update Baker
+
+After version update in pyproject.toml
+
+```bash
+pip install -e .
+```
+

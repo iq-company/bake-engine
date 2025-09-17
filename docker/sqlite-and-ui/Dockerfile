@@ -19,7 +19,7 @@ RUN apk add curl
 RUN mkdir -p /app/config /app/logs /app/libs /app/sqlite/
 
 # Copy the compiled output to new image
-COPY ./docker/sqlite-and-ui/config /app/config
+COPY ./config /app/config
 
 # ENV CONFIG_PROP=config-sqlite.properties
 
