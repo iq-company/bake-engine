@@ -15,13 +15,13 @@ targets:
     image: src
     latest: true
   # service with sqlite config
-  sqlite:
-    dockerfile: docker/sqlite/Dockerfile
+  conductor:
+    dockerfile: docker/conductor/Dockerfile
     context: .
     deps:
       - src
     hash_mode: self
-    image: sqlite
+    image: conductor
     latest: true
   # build the UI isloated
   ui:
@@ -37,7 +37,7 @@ targets:
     dockerfile: docker/sqlite-and-ui/Dockerfile
     context: .
     deps:
-      - sqlite
+      - conductor
       - ui
     hash_mode: self
     image: sqlite-and-ui
