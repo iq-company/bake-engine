@@ -2,9 +2,9 @@ name: Baker Build and Push
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build:
@@ -13,7 +13,7 @@ jobs:
       contents: read
       packages: write
     env:
-      REGISTRY: ${env("REGISTRY","")}
+      REGISTRY: ${{ vars.REGISTRY || 'ghcr.io' }}
       OWNER: ${{ github.repository_owner }}
     steps:
       - uses: actions/checkout@v4
@@ -30,7 +30,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.x'
+          python-version: "3.x"
       - name: Install baker-cli
         run: pip install baker-cli
       - name: Build all targets
