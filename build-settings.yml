@@ -12,7 +12,7 @@ targets:
     context: docker/src
     deps: []
     hash_mode: self
-    image: src
+    image: engine-src
     latest: true
   # service with sqlite config
   conductor:
@@ -21,7 +21,7 @@ targets:
     deps:
       - src
     hash_mode: self
-    image: conductor
+    image: engine-conductor
     latest: true
   # build the UI isloated
   ui:
@@ -30,7 +30,7 @@ targets:
     deps:
       - src
     hash_mode: self+deps
-    image: ui
+    image: engine-ui
     latest: true
   # target image with sqlite config and ui included
   sqlite-and-ui:
@@ -40,5 +40,5 @@ targets:
       - conductor
       - ui
     hash_mode: self
-    image: sqlite-and-ui
+    image: engine-sqlite-and-ui
     latest: true
