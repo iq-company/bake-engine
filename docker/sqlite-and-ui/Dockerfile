@@ -40,3 +40,5 @@ HEALTHCHECK --interval=60s --timeout=30s --retries=10 CMD curl -I -XGET http://l
 CMD [ "/app/startup.sh" ]
 ENTRYPOINT [ "/bin/sh"]
 
+# test small change
+
